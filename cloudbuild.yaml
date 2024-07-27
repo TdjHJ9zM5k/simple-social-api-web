@@ -1,0 +1,21 @@
+steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/social-network-frontend', '.']
+
+  # Step 2: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/social-network-frontend']
+
+  # Step 3: Deploy the Docker image to Google Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: ['run', 'deploy', 'social-network-frontend', '--image', 'gcr.io/$PROJECT_ID/social-network-frontend', '--platform', 'managed', '--region', 'YOUR_REGION', '--allow-unauthenticated']
+
+# Substitutions to use in the cloudbuild.yaml
+substitutions:
+  _DEPLOY_REGION: 'YOUR_REGION'
+
+# Define the images that need to be pushed
+images:
+  - 'gcr.io/$PROJECT_ID/social-network-frontend'
