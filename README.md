@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Simple Social Network Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## General Description
 
-## Available Scripts
+This is a Simple Social Network Web Application! This project provides functionalities for user authentication, posting, commenting, and following users. It integrates with the backend API server.
 
-In the project directory, you can run:
+- **Technology Stack**: React, Material-UI
+- **State Management**: React hooks (useState, useEffect)
+- **API Integration**: Axios
+- **Deployment**: Serverless, with Continuous Deployment pipeline on Google Cloud Run
 
-### `npm start`
+The backend repository can be found at:
+[https://github.com/TdjHJ9zM5k/simple-social-api-server](https://github.com/TdjHJ9zM5k/simple-social-api-server)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Live Deployment
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can access the live deployment at:
+[https://your-google-cloud-run-url](https://your-google-cloud-run-url)
 
-### `npm test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Login Page
+<img src="docs/screenshots/login_page.png" alt="Login Page" width="600"/>
 
-### `npm run build`
+### Home Page
+<img src="docs/screenshots/home_page.png" alt="Home Page" width="600"/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Authentication
+- **Login** and **Register** functionalities
+- **Logout** functionality
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Posts
+- Create a new post with text and optional image upload
+- View all posts with comments
+- Delete your own comments
 
-### `npm run eject`
+### Users
+- View all users
+- Follow and unfollow other users
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Continuous Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application is deployed using Google Cloud Run with a continuous deployment trigger set up via Cloud Build.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Cloud Build Trigger
+<img src="docs/screenshots/cloud_build_trigger.png" alt="Cloud Build Trigger" width="600"/>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Deployment on Cloud Run
+<img src="docs/screenshots/cloud_run_deployment.png" alt="Cloud Run Deployment" width="600"/>
 
-## Learn More
+## Backend API Server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For more details on the backend API server, refer to the backend repository:
+[https://github.com/TdjHJ9zM5k/simple-social-api-server](https://github.com/TdjHJ9zM5k/simple-social-api-server)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Note
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is a simple free-time project made in a week as I had some more spare time.

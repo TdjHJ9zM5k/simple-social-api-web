@@ -1,0 +1,53 @@
+/* App.css */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #3f51b5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+button {
+  background-color: #3f51b5;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #303f9f;
+}
+
+textarea, input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 8px 0;
+}
+
+.MuiPaper-root {
+  margin: 16px auto;
+  max-width: 600px;
+}
+
+.MuiSnackbar-root {
+  bottom: 20px;
+}

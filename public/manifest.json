@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Simple Social Network Webapp",
+  "name": "Simple Social Network Webapp",
   "icons": [
     {
       "src": "favicon.ico",

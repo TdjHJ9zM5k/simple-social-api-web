@@ -20,6 +20,8 @@ import {
 import { styled } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
+import './App.css';
+
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
@@ -445,7 +447,7 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
-            Social Network Web
+            Simple Social Network Webapp
           </Typography>
           {user ? (
             <>
