@@ -20,7 +20,7 @@ import {
 import { styled } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
-import './App.css';
+//import './App.css';
 
 
 const API_BASE_URL = 'http://localhost:8080/api';
@@ -444,7 +444,7 @@ function App() {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             Simple Social Network Webapp
@@ -463,7 +463,7 @@ function App() {
           )}
         </Toolbar>
       </AppBar>
-
+	  <div style={{ marginTop: '80px' }}>
       {user ? (
         <Container style={{ display: 'flex', flexDirection: 'row', marginTop: '20px' }}>
           <Box flex={3} display="flex" flexDirection="column" mr={1.6}>
@@ -650,7 +650,7 @@ function App() {
           </Paper>
         </Container>
       )}
-
+	</div>
       <Snackbar
         open={snackbar.open}
         autoHideDuration={6000}
