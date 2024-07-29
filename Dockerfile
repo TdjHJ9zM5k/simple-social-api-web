@@ -22,8 +22,11 @@ FROM nginx:alpine
 # Copy the built files from the previous stage to the NGINX html directory
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose port 80 to the outside world
-EXPOSE 80
+# Expose port 8080 to the outside world (as required by Google Cloud Run)
+EXPOSE 8080
+
+# Update the NGINX configuration to listen on port 8080
+RUN sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/conf.d/default.conf
 
 # Command to run NGINX
 CMD ["nginx", "-g", "daemon off;"]
