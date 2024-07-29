@@ -2,20 +2,18 @@
 
 ## General Description
 
-This is a Simple Social Network Web Application! This project provides functionalities for user authentication, posting, commenting, and following users. It integrates with the backend API server.
+This is a web interface for my repo [Simple Social Network API Server](https://github.com/TdjHJ9zM5k/simple-social-api-server)<br><br>
+This project provides functionalities for user authentication, posting, commenting, and following users.
 
 - **Technology Stack**: React, Material-UI
 - **State Management**: React hooks (useState, useEffect)
 - **API Integration**: Axios
 - **Deployment**: Serverless, with Continuous Deployment pipeline on Google Cloud Run
 
-The backend repository can be found at:
-[https://github.com/TdjHJ9zM5k/simple-social-api-server](https://github.com/TdjHJ9zM5k/simple-social-api-server)
-
 ## Live Deployment
 
 You can access the live deployment at:
-[https://your-google-cloud-run-url](https://your-google-cloud-run-url)
+[https://social-network-frontend-cpkhh4qfda-ew.a.run.app](https://social-network-frontend-cpkhh4qfda-ew.a.run.app)
 
 ## Screenshots
 
@@ -54,7 +52,3 @@ The application is deployed using Google Cloud Run with a continuous deployment 
 
 For more details on the backend API server, refer to the backend repository:
 [https://github.com/TdjHJ9zM5k/simple-social-api-server](https://github.com/TdjHJ9zM5k/simple-social-api-server)
-
-## Note
-
-This is a simple free-time project made in a week as I had some more spare time.
