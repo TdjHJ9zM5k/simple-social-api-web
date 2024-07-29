@@ -10,11 +10,11 @@ steps:
   # Step 3: Deploy the Docker image to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: ['run', 'deploy', 'social-network-frontend', '--image', 'gcr.io/$PROJECT_ID/social-network-frontend', '--platform', 'managed', '--region', 'YOUR_REGION', '--allow-unauthenticated']
+    args: ['run', 'deploy', 'social-network-frontend', '--image', 'gcr.io/$PROJECT_ID/social-network-frontend', '--platform', 'managed', '--region', 'europe-west1', '--allow-unauthenticated']
 
 # Substitutions to use in the cloudbuild.yaml
 substitutions:
-  _DEPLOY_REGION: 'YOUR_REGION'
+  _DEPLOY_REGION: 'europe-west1'
 
 # Define the images that need to be pushed
 images:
