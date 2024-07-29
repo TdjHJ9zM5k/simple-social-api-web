@@ -19,3 +19,5 @@ substitutions:
 # Define the images that need to be pushed
 images:
   - 'gcr.io/$PROJECT_ID/social-network-frontend'
+options:
+  logging: CLOUD_LOGGING_ONLY
