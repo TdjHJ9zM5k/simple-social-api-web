@@ -47,8 +47,3 @@ The application is deployed using Google Cloud Run with a continuous deployment 
 
 ### Deployment on Cloud Run
 <img src="docs/screenshots/cloud_run_deployment.png" alt="Cloud Run Deployment" width="600"/>
-
-## Backend API Server
-
-For more details on the backend API server, refer to the backend repository:
-[https://github.com/TdjHJ9zM5k/simple-social-api-server](https://github.com/TdjHJ9zM5k/simple-social-api-server)
