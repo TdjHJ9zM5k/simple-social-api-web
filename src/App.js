@@ -23,7 +23,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 //import './App.css';
 
 
-const API_BASE_URL = 'http://localhost:8080/api';
+//const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'https://social-cpkhh4qfda-ey.a.run.app/api';
 
 // Function to safely decode URI components
 const safeDecodeURIComponent = (text) => {
