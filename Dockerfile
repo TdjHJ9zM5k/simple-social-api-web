@@ -25,8 +25,11 @@ COPY --from=build /app/build /usr/share/nginx/html
 # Expose port 8080 to the outside world (as required by Google Cloud Run)
 EXPOSE 8080
 
-# Update the NGINX configuration to listen on port 8080
-RUN sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/conf.d/default.conf
+# Copy the custom NGINX configuration file to the appropriate location
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy custom server configuration to the appropriate directory
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Command to run NGINX
 CMD ["nginx", "-g", "daemon off;"]
