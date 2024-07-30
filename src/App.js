@@ -94,7 +94,7 @@ function App() {
 			let imageUrl = null;
 			if (post.image_name) {
 			 try {
-				const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.image_name}`, {
+				const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
 				  responseType: 'arraybuffer',
 				  withCredentials: true, // Include credentials in the request
 				});
@@ -211,7 +211,7 @@ function App() {
         let imageUrl = null;
 		if (post.image_name) {
 			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.image_name}`, {
+			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
 			  responseType: 'arraybuffer',
 			  withCredentials: true, // Include credentials in the request
 			});
@@ -284,7 +284,7 @@ function App() {
 		let imageUrl = null;
 		if (post.image_name) {
 			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.image_name}`, {
+			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
 			  responseType: 'arraybuffer',
 			  withCredentials: true, // Include credentials in the request
 			});
@@ -335,7 +335,7 @@ function App() {
 		let imageUrl = null;
 		if (post.image_name) {
 			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.image_name}`, {
+			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
 			  responseType: 'arraybuffer',
 			  withCredentials: true, // Include credentials in the request
 			});
@@ -406,7 +406,7 @@ function App() {
 		let imageUrl = null;
 		if (post.image_name) {
 			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.image_name}`, {
+			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
 			  responseType: 'arraybuffer',
 			  withCredentials: true, // Include credentials in the request
 			});
