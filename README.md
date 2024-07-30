@@ -18,10 +18,10 @@ You can access the live deployment at:
 ## Screenshots
 
 ### Login Page
-<img src="docs/screenshots/login_page.png" alt="Login Page" width="600"/>
+<img src="docs/screenshots/login.png" alt="Login Page" width="600"/>
 
 ### Home Page
-<img src="docs/screenshots/home_page.png" alt="Home Page" width="600"/>
+<img src="docs/screenshots/homepage.png" alt="Home Page" width="600"/>
 
 ## Features
 
