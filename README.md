@@ -8,7 +8,7 @@ This project provides functionalities for user authentication, posting, commenti
 - **Technology Stack**: React, Material-UI
 - **State Management**: React hooks (useState, useEffect)
 - **API Integration**: Axios
-- **Deployment**: Serverless, with Continuous Deployment pipeline on Google Cloud Run
+- **Deployment**: Serverless, with Continuous Deployment pipeline on **Google Cloud Run**
 
 ## Live Deployment
 
