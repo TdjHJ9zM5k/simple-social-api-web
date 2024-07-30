@@ -43,7 +43,7 @@ You can access the live deployment at:
 The application is deployed using Google Cloud Run with a continuous deployment trigger set up via Cloud Build.
 
 ### Cloud Build Trigger
-<img src="docs/screenshots/cloud_build_trigger.png" alt="Cloud Build Trigger" width="600"/>
+<img src="docs/screenshots/cloud_build.png" alt="Cloud Build Trigger" width="600"/>
 
 ### Deployment on Cloud Run
-<img src="docs/screenshots/cloud_run_deployment.png" alt="Cloud Run Deployment" width="600"/>
+<img src="docs/screenshots/cloud_run.png" alt="Cloud Run Deployment" width="600"/>
