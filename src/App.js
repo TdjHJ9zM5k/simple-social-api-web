@@ -182,7 +182,56 @@ function App() {
       console.error('Logout error:', error);
     }
   };
+  
+  
+  
+  
+  
+  
+// Common function to fetch and process posts
+	const fetchAndProcessPosts = async () => {
+    const postsResponse = await axios.get(`${API_BASE_URL}/post/list-all-posts`, { withCredentials: true });
+    const postsWithImages = await Promise.all(postsResponse.data.map(async (post) => {
+      const decodedPost = safeDecodeURIComponent(post.post);
+      const cleanedPost = cleanContent(decodedPost);
 
+      let imageUrl = null;
+      if (post.image_name) {
+        try {
+          const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
+            responseType: 'arraybuffer',
+            withCredentials: true,
+          });
+          const imageBlob = new Blob([imageResponse.data], { type: 'image/png' });
+          imageUrl = URL.createObjectURL(imageBlob);
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+            console.warn('Image not found, skipping image rendering.');
+          } else {
+            console.error('Error fetching image:', error);
+          }
+        }
+      }
+
+      const commentsResponse = await axios.get(`${API_BASE_URL}/post/post-details/${post.post_id}`, { withCredentials: true });
+      const comments = commentsResponse.data.comments.map(comment => ({
+        ...comment,
+        comment: cleanContent(safeDecodeURIComponent(comment.comment)),
+      }));
+
+      return {
+        ...post,
+        post: cleanedPost,
+        imageUrl: imageUrl,
+        comments: comments,
+      };
+    }));
+    setPosts(postsWithImages);
+  };
+  
+  
+  
+  
   const handlePost = async () => {
     try {
       const formData = new FormData();
@@ -203,45 +252,7 @@ function App() {
       setImagePreview(null); // Clear the preview after posting
 
       // Refresh the posts after successful submission
-      const postsResponse = await axios.get(`${API_BASE_URL}/post/list-all-posts`, { withCredentials: true });
-      const postsWithImages = await Promise.all(postsResponse.data.map(async (post) => {
-        const decodedPost = safeDecodeURIComponent(post.post);
-        const cleanedPost = cleanContent(decodedPost);
-
-        let imageUrl = null;
-		if (post.image_name) {
-			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
-			  responseType: 'arraybuffer',
-			  withCredentials: true, // Include credentials in the request
-			});
-			const imageBlob = new Blob([imageResponse.data], { type: 'image/png' });
-			imageUrl = URL.createObjectURL(imageBlob);
-		  } catch (error) {
-			if (error.response && error.response.status === 404) {
-			  console.warn('Image not found, skipping image rendering.');
-			  // Handle the 404 error here, e.g., log it or set a default image URL if needed
-			} else {
-			  console.error('Error fetching image:', error);
-			  // Handle other potential errors
-			}
-		  }
-		}
-
-        const commentsResponse = await axios.get(`${API_BASE_URL}/post/post-details/${post.post_id}`, { withCredentials: true });
-        const comments = commentsResponse.data.comments.map(comment => ({
-          ...comment,
-          comment: cleanContent(safeDecodeURIComponent(comment.comment)),
-        }));
-
-        return {
-          ...post,
-          post: cleanedPost,
-          imageUrl: imageUrl,
-          comments: comments,
-        };
-      }));
-      setPosts(postsWithImages);
+	  await fetchAndProcessPosts();
 
       setSnackbar({ open: true, message: 'Post added successfully', severity: 'success' });
     } catch (error) {
@@ -275,45 +286,8 @@ function App() {
       ];
       setUsers(sortedUsers);
 
-      // Update posts
-      const postsResponse = await axios.get(`${API_BASE_URL}/post/list-all-posts`, { withCredentials: true });
-      const decodedPosts = await Promise.all(postsResponse.data.map(async (post) => {
-        const decodedPost = safeDecodeURIComponent(post.post);
-        const cleanedPost = cleanContent(decodedPost);
-		
-		let imageUrl = null;
-		if (post.image_name) {
-			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
-			  responseType: 'arraybuffer',
-			  withCredentials: true, // Include credentials in the request
-			});
-			const imageBlob = new Blob([imageResponse.data], { type: 'image/png' });
-			imageUrl = URL.createObjectURL(imageBlob);
-		  } catch (error) {
-			if (error.response && error.response.status === 404) {
-			  console.warn('Image not found, skipping image rendering.');
-			  // Handle the 404 error here, e.g., log it or set a default image URL if needed
-			} else {
-			  console.error('Error fetching image:', error);
-			  // Handle other potential errors
-			}
-		  }
-		}
-		
-        const commentsResponse = await axios.get(`${API_BASE_URL}/post/post-details/${post.post_id}`, { withCredentials: true });
-        const comments = commentsResponse.data.comments.map(comment => ({
-          ...comment,
-          comment: cleanContent(safeDecodeURIComponent(comment.comment)),
-        }));
-        return {
-          ...post,
-          post: cleanedPost,
-          imageUrl: imageUrl,
-          comments: comments,
-        };
-      }));
-      setPosts(decodedPosts);
+	  // Refresh the posts after successful submission
+      await fetchAndProcessPosts();
 
     } catch (error) {
       setSnackbar({ open: true, message: `Error ${isFollowing ? 'unfollowing' : 'following'} user`, severity: 'error' });
@@ -325,47 +299,10 @@ function App() {
     try {
       await axios.post(`${API_BASE_URL}/post/${postId}/comment/add`, commentText , { withCredentials: true });
       setComment('');
-
-      // Update post with new comment
-      const postsResponse = await axios.get(`${API_BASE_URL}/post/list-all-posts`, { withCredentials: true });
-      const decodedPosts = await Promise.all(postsResponse.data.map(async (post) => {
-        const decodedPost = safeDecodeURIComponent(post.post);
-        const cleanedPost = cleanContent(decodedPost);
-		
-		let imageUrl = null;
-		if (post.image_name) {
-			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
-			  responseType: 'arraybuffer',
-			  withCredentials: true, // Include credentials in the request
-			});
-			const imageBlob = new Blob([imageResponse.data], { type: 'image/png' });
-			imageUrl = URL.createObjectURL(imageBlob);
-		  } catch (error) {
-			if (error.response && error.response.status === 404) {
-			  console.warn('Image not found, skipping image rendering.');
-			  // Handle the 404 error here, e.g., log it or set a default image URL if needed
-			} else {
-			  console.error('Error fetching image:', error);
-			  // Handle other potential errors
-			}
-		  }
-		}
-		
-        const commentsResponse = await axios.get(`${API_BASE_URL}/post/post-details/${post.post_id}`, { withCredentials: true });
-        const comments = commentsResponse.data.comments.map(comment => ({
-          ...comment,
-          comment: cleanContent(safeDecodeURIComponent(comment.comment)),
-        }));
-        return {
-          ...post,
-          post: cleanedPost,
-          imageUrl: imageUrl,
-          comments: comments,
-        };
-      }));
-      setPosts(decodedPosts);
-
+	  
+	  // Refresh the posts after successful submission
+      await fetchAndProcessPosts();
+	  
       setSnackbar({ open: true, message: 'Comment added successfully', severity: 'success' });
     } catch (error) {
       setSnackbar({ open: true, message: 'Error adding comment', severity: 'error' });
@@ -397,45 +334,10 @@ function App() {
     try {
       await axios.post(`${API_BASE_URL}/post/${postId}/comment/delete/${commentId}`, {}, { withCredentials: true });
 
-      // Update posts without the deleted comment
-      const postsResponse = await axios.get(`${API_BASE_URL}/post/list-all-posts`, { withCredentials: true });
-      const decodedPosts = await Promise.all(postsResponse.data.map(async (post) => {
-        const decodedPost = safeDecodeURIComponent(post.post);
-        const cleanedPost = cleanContent(decodedPost);
-		
-		let imageUrl = null;
-		if (post.image_name) {
-			 try {
-			const imageResponse = await axios.get(`${API_BASE_URL}/post/image/${post.post_id}/${post.image_name}`, {
-			  responseType: 'arraybuffer',
-			  withCredentials: true, // Include credentials in the request
-			});
-			const imageBlob = new Blob([imageResponse.data], { type: 'image/png' });
-			imageUrl = URL.createObjectURL(imageBlob);
-		  } catch (error) {
-			if (error.response && error.response.status === 404) {
-			  console.warn('Image not found, skipping image rendering.');
-			  // Handle the 404 error here, e.g., log it or set a default image URL if needed
-			} else {
-			  console.error('Error fetching image:', error);
-			  // Handle other potential errors
-			}
-		  }
-		}
-		
-        const commentsResponse = await axios.get(`${API_BASE_URL}/post/post-details/${post.post_id}`, { withCredentials: true });
-        const comments = commentsResponse.data.comments.map(comment => ({
-          ...comment,
-          comment: cleanContent(safeDecodeURIComponent(comment.comment)),
-        }));
-        return {
-          ...post,
-          post: cleanedPost,
-          imageUrl: imageUrl,
-          comments: comments,
-        };
-      }));
-      setPosts(decodedPosts);
+	  // Refresh the posts after successful submission
+      await fetchAndProcessPosts();
+	
+	
       setSnackbar({ open: true, message: 'Comment deleted successfully', severity: 'success' });
     } catch (error) {
       setSnackbar({ open: true, message: 'Error deleting comment', severity: 'error' });
