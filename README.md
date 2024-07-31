@@ -6,7 +6,6 @@ This is a web interface for my repo [Simple Social Network API Server](https://g
 This project provides functionalities for user authentication, posting, commenting, and following users.
 
 - **Technology Stack**: React, Material-UI
-- **State Management**: React hooks (useState, useEffect)
 - **API Integration**: Axios
 - **Deployment**: Serverless, with Continuous Deployment pipeline on **Google Cloud Run**
 
